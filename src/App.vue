@@ -1,28 +1,24 @@
 <script>
 import TheHeader from "./components/TheHeader.vue"
 import TheMain from "./components/TheMain.vue"
-import store from "./store"
+import { storage } from "./store.js"
 export default {
-  components:{
+  components: {
     TheMain,
     TheHeader,
-  },
-  data(){
 
   },
-  methods:{
+  data() {
+    return {
+      storage
+    }
 
   },
-  mounted:{
-    
-  }
 }
 </script>
 
 <template>
- 
+  <TheHeader />
 </template>
 
-<style scoped lang="scss">
-
-</style>
+<style lang="scss"></style>
