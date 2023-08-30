@@ -39,41 +39,11 @@ export default {
                     @click.prevent="fetchFilmList(), fetchTvList()">Go</button>
             </form>
         </div>
-        <!-- film -->
-        <div class="container margin-title">
-            <h2>Lista Film</h2>
-            <div class="row row-lg-cols-6">
-                <div class="col position-relative" v-for="singleFilm in storage.arrayFilms">
-                    <img class="poster" :src=getPoster(singleFilm.poster_path) alt="">
-                    <ul>
-                        <li>Titolo: {{ singleFilm.title }} </li>
-                        <li>Titolo Originale: {{ singleFilm.original_title }} </li>
-                        <li>Lingua: {{ singleFilm.original_language }}
-                            <lang-flag :iso="singleFilm.original_language" />
-                        </li>
-                        <li>Voto: {{ Math.floor(singleFilm.vote_average) / 2 }} </li>
-
-                    </ul>
-                </div>
-            </div>
-            <h2>Lista Serie Tv</h2>
-            <div class="row row-lg-cols-6">
-                <div class="col position-relative" v-for="singleTv in storage.arrayTv">
-                    <img class="poster" :src=getPoster(singleTv.poster_path) alt="">
-                    <ul>
-                        <li>Nome: {{ singleTv.name }} </li>
-                        <li>Nome Originale: {{ singleTv.original_name }} </li>
-                        <li>Lingua: {{ singleTv.original_language }}
-                            <lang-flag :iso="singleTv.original_language" />
-                        </li>
-                        <li>Voto: {{ Math.floor(singleTv.vote_average) / 2 }} </li>
-                    </ul>
-                </div>
-            </div>
-        </div>
+        
+        
     </div>
 
-    <!-- serie tv -->
+    
 </template>
     
 <style scoped lang="scss">
@@ -83,43 +53,10 @@ form {
 
 
 }
-
-
-
-ul {
-    list-style: none;
-    position: absolute;
-    left: 0;
-    bottom: 0;
-    background-color: rgba(0, 0, 0, 0.5);
-    color: white;
-    padding: 1rem;
-    width: 200px;
-    margin: 0;
-    display: none;
-}
-
-.col {
-    padding: 0;
-    margin-top: 1rem;
-    
-    img {
-    height: 300px;
-    width: 200px;
-}
-}
-
-h2 {
-    margin-top: 6rem;
-    padding-left: 1rem;
-    color: white;
-    border-left: 3px solid red;
-}
-
 .bg-netflix {
     background-color: rgb(31, 31, 31);
+    height: 100%;
 }
-
 .header-container{
     background-color: rgb(19, 18, 18);
     position: fixed;
@@ -128,17 +65,17 @@ h2 {
     left: 0;
     width: 100%;
     justify-content: space-between;
-}
 
+    .form-control{
+        background-color: white;
+    }
+}
 .neftlix-img{
     width: 300px;
     padding: 1rem;
 
 }
-.margin-title{
-    padding-top: 113px;
-}
-.col:hover ul{
-    display: block;
-}
+
+
+
 </style>

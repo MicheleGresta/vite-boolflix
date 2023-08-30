@@ -2,9 +2,6 @@
 import LangFlag from 'vue-lang-code-flags';
 import { findFlagUrlByIso2Code } from "country-flags-svg";
 import { fetchFilmList, storage, fetchTvList, getPoster } from '../store';
-
-import Films from "./Films.vue";
-import TvSeries from "./TvSeries.vue";
 export default {
     data() {
         return {
@@ -14,8 +11,6 @@ export default {
     },
     components: {
         LangFlag,
-        Films,
-        TvSeries,
 
     },
     methods: {
@@ -34,29 +29,55 @@ export default {
 </script>
 
 <template>
-    <div class="container margin-title">
-        <!-- film -->
-        <h2>Lista Film</h2>
-        <div class="row row-lg-cols-6">
-            <Films />
-        </div>
-        <!-- serie tv -->
-        <h2>Lista Serie Tv</h2>
-        <div class="row row-lg-cols-6">
-            <TvSeries />
-        </div>
+    <div class="col position-relative" v-for="singleTv in storage.arrayTv">
+        <img class="poster" :src=getPoster(singleTv.poster_path) alt="">
+        <ul>
+            <li>Nome: {{ singleTv.name }} </li>
+            <li>Nome Originale: {{ singleTv.original_name }} </li>
+            <li>Lingua: {{ singleTv.original_language }}
+                <lang-flag :iso="singleTv.original_language" />
+            </li>
+            <li>Voto: {{ Math.floor(singleTv.vote_average) / 2 }} </li>
+        </ul>
     </div>
 </template>
 
 <style scoped lang="scss">
+ul {
+    list-style: none;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    padding: 1rem;
+    width: 200px;
+    margin: 0;
+    display: none;
+}
+
+.col {
+    padding: 0;
+    margin-top: 1rem;
+
+    img {
+        height: 300px;
+        width: 200px;
+    }
+}
+
 h2 {
     margin-top: 6rem;
     padding-left: 1rem;
     color: white;
     border-left: 3px solid red;
 }
+
 .margin-title {
     padding-top: 113px;
 }
 
+.col:hover ul {
+    display: block;
+}
 </style>
